@@ -1,0 +1,1123 @@
+---
+title: "Análisis estadístico"
+subtitle: ""
+author: "Alexis Rangel"
+date: "2022-12-07"
+output:
+  xaringan::moon_reader:
+    css: 
+      css/stylesheet.css
+    nature:
+      self_contained: true
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      navigation: 
+        scroll: false
+---
+name: about-me
+layout: false
+class: about-me-slide, middle, center
+background-color: var(--DarkRed)
+
+# About me
+
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/92005917?v=4.png" width="250px"/>
+s
+## Alexis Rangel Calvo
+#### Lic en economía y programador jr
+
+.fade[Propedeutico MAEA FACE UJED]
+
+[`r fontawesome::fa("twitter", a11y = "sem")` @alexrangelcalvo](https://mobile.twitter.com/alexrangelcalvo)
+[`r fontawesome::fa("github", a11y = "sem")` @alexisrangelcalvo](https://github.com/alexisrangelcalvo)
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+
+<Br>
+### Sobre la base de datos
+
+<div style="text-align: justify">La base de datos analizada y estudiada en el presente proyecto fue encontrada en la comunidad de Kaggle, constó de 30 mil registros en bruto relativos a información financiera con fecha de abril del 2005 a septiembre del mismo año, e incluyen el historial y comportamiento crediticio, como variables demográficas de una misma comunidad en un mismo periodo.<div/>
+<Hr>
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+### Planteamiento del problema
+
+
+
+<div style="text-align: justify">En la mencionada base de datos contamos con variables demográficas de tipo discretas y del comportamiento del uso de tarjetas de crédito, de tipo continua, para cada cliente.<div/>
+
+<Br>
+
+<div style="text-align: justify">*¿Hay alguna de estas variables (edad, estado civil, el comportamiento crediticio mes con mes) que pueda explicar el porqué algunos clientes tienen mucho más limite crediticio que otros? ¿Se puede modelar una aproximación a dicha relación?*<div/>
+<Hr>
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+###Objetivo general
+
+
+<div style="text-align: justify">Describir el comportamiento de los usuarios de tarjetas de crédito, luego de una clasificación por tipo de perfil de cliente basado en el consumo-pago de la linea de crédito mes con mes, y finalmente evaluar el efecto de uno o más factores  <Sexo, Educación, Estado civil, Edad (quantil) y perfil de consumidor> sobre la media, mediana y dispersión de la variable continua <Crédito máximo>. <div/>
+<Hr>
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+<Br>
+###Objetivos particulares
+
+<div style="text-align: justify">* Tratamiento, limpieza de datos y exclusión de registros de clientes con datos incompletos que no permitan su estudio.<div/>
+<Br>
+<div style="text-align: justify">* Describir a los usuarios, a su comportamiento en el uso de tarjetas de crédito en los 6 meses disponibles y establecer perfiles de consumo (crear una nueva variable) con base en el comportamiento consumo-pago de la linea de crédito. Generar una sintesis, elaborar tablas y graficas que apoyen en esta tarea.<div/>
+<Br>
+<div style="text-align: justify">* Evaluar el efecto de uno o más factores  <Sexo, Educación, Estado civil, Edad (quantil) y perfil de consumidor> sobre la media, mediana y dispersión de la variable de respuesta continua <Crédito máximo><div/>
+
+<Hr>
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+<Br>
+###Alcances
+
+Dar una primera aproximación a la clásificación o clusterizarización de perfiles.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+###Limitaciones
+
+* Tiempo.
+* Limitación personal en el conocimiento de estadística.
+* Limitación personal en el conocimiento de la programación en R studio.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+###Marco teórico
+
+
+<div style="text-align: justify">**Definiendo perfiles de clientes:** La variable PAY_X (1:6) define el estatus del pago de septiembre a abril en orden inverso. Cada mes se generá este estatus de pago al evaluar la variable BILL_AMTX (1:6), que es la cantidad a pagar en el mes, contra la variable PAY_AMT1, que es la cantidad pagada por el usuario en el mes.<div/>
+
+
+
+En la documentación de la propia base se establecen el significado para cada estatus de pago:
++ -2 indica no consumo en el periodo (que no se utilizó la TC)
++ -1 indica que el saldo de la TC fue pagado en su totalidad.
++ 0  indica que se uso un crédito revolvente (se pagó el mínimo para no generar intereses, pero no se liquido el crédito)
++ 1 indica que el  pago esta retrasado por un mes (30 días)
++ 2 indica que el pago esta retrasado por dos meses (60 días)
++ 3 indica que el pago esta retrasado por dos meses (90 días)
++ …
++ 9 indica que el pago esta retrasado por nueve meses o más (>= 270 días)
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+###Metodología:
+
+<div style="text-align: justify">Mediante el uso del software estadístico R y su interfaz R studio, y con los conocimientos aprendidos en los modulos del curso propedeutico, se generá un análisis se acota en el campo cuantitativo, de tipo descriptivo, con un diseño no experimental longitudinal de tendencia. La población estuvo conformada por 30 mil registros de usuarios de tarjetas de crédito en Taiwan para el periodo de abril a septiembre (6 meses) del 2005.
+
+Para la presentación visual de este proyecto se optó por usar slides en r markdown con moon reader, la paquetería Xaringan, CSS y el maquetado con HTML, con el fin de explorar otras formatos de presentaciones alternos.<div/>
+
+<Hr>
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+<Br>
+### ¿Por qué usar R markdown como presentación?
+
+Porque permite hacer presentaciones donde se puede incluir fácilmente las lineas de código con el fin de mostrar los procesos y los resultados obtenidos, facilitando más el entendimiento del lector dado que es una lectura más amigable así combatir el tedioso screenshot, copy and paste de R a PPT o Word. Creando presentaciones útiles para el análisis y ciencia de datos.
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+```{r Estableciendo directorio y llamando DBS, include=FALSE}
+setwd("~/Maestria/Curso propedeutico/coloquio/ColoquioMAEA") 
+#estableciendo directorio
+library(readr)
+library(ggplot2)
+library(tidyr)
+library(readxl)
+library(dplyr)
+library(magrittr)
+library(glue)
+library(plyr)
+library(patchwork) #for subplots
+library(plotly)#file.choose()
+library(flextable)
+
+ruta_db = "./DBS/Default of Credit Card Clients Dataset/UCI_Credit_Card.csv"
+
+df0 = read.csv(ruta_db)
+dfbase = read.csv(ruta_db)
+```
+
+
+
+```{r excluyendo NIVEL variables registros no identificados en la BD, include=FALSE}
+names(df0)
+head(df0)
+
+unique(df0$SEX)
+df0$SEX = factor(df0$SEX, levels = c(1, 2), labels =  c('Hombre','Mujer'))
+
+
+#filtrando el df0 solo con valores reconocidos para la var EDUCATION
+
+df0$EDUCATION[df0$EDUCATION == 6] = 5
+df0$EDUCATION[df0$EDUCATION == 5] = 4
+df0$EDUCATION[df0$EDUCATION == 0] = 4
+unique(df0$EDUCATION)
+recognized_levels_EDUCATION = c(1, 2, 3, 4)
+df0 = df0[df0$MARRIAGE %in% recognized_levels_EDUCATION, ]
+df0$EDUCATION = factor(df0$EDUCATION, levels = c(1,2,3,4), labels =  c('graduate school', 'university', 'high school', 'others'))
+unique(df0$EDUCATION)
+
+
+
+# MARRIAGE: Marital status (1=married, 2=single, 3=others)
+unique(df0$MARRIAGE)
+recognized_levels_marriage = c(1, 2, 3)
+df0 = df0[df0$MARRIAGE %in% recognized_levels_marriage, ]
+df0$MARRIAGE = factor(df0$MARRIAGE, levels = recognized_levels_marriage, labels =  c('married', 'single', 'divorced'))
+
+
+#TRATAMIENTO A COLUMNA PAY
+
+#df0 %>% rename ('PAY_1' = 'PAY_0')
+
+df0 = rename(df0, PAY_1 = PAY_0)
+unique(df0$PAY_1)
+#Se plantea sustituir el -2 por el 0 ya que indican lo mismo, sin pago en el balance del mes
+#df0$PAY_1[df0$PAY_1 == -2] = 0
+df0$PAY_1 = as.factor(df0$PAY_1)
+#df0$PAY_2[df0$PAY_2 == -2] = 0
+df0$PAY_2 = as.factor(df0$PAY_2)
+#df0$PAY_3[df0$PAY_3 == -2] = 0
+df0$PAY_3 = as.factor(df0$PAY_3)
+#df0$PAY_4[df0$PAY_4 == -2] = 0
+df0$PAY_4 = as.factor(df0$PAY_4)
+#df0$PAY_5[df0$PAY_5 == -2] = 0
+df0$PAY_5 = as.factor(df0$PAY_5)
+#df0$PAY_6[df0$PAY_6 == -2] = 0
+df0$PAY_6 = as.factor(df0$PAY_6)
+
+#Edad agrupada por quartiles como factor
+quantile(df0$AGE)
+quantil_func = function (x) {
+  if (x >= 21 & x <= 28){
+    return ("21 - 28 anios")
+  }
+  else if (x > 28 & x <= 34){
+    return ("29 - 34 anios")
+  }
+  else if (x > 34 & x <= 41){
+    return ("35 - 41 anios")
+  }
+  else if (41 < x){
+    return ("42 - 79 anios")
+  }
+}
+df0$QUANTILE_AGE = sapply(df0$AGE, quantil_func) 
+df0$QUANTILE_AGE
+"
+-2: No consumption; -1: Paid in full; 0: The use of revolving credit; 1 = payment delay for one month; 2 = payment delay for two months; . . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.
+"
+diferencia_df0_dfbase = dim(dfbase)[1] - dim(df0)[1]
+
+glue('INFORME: Al finalizar los primeros filtrados de valores no especificados de la BD, se eliminaron {diferencia_df0_dfbase} registros de un total de {length(dfbase)}')
+```
+
+<Br>
+###Conociendo las variables de estudio
+
+```{r, echo=FALSE}
+names(df0)
+
+```
+
+
+```{r, include=FALSE}
+
+gg2 = ggplot(df0) +
+  geom_bar(mapping = aes(y=EDUCATION, fill = SEX))
+
+gg2 = gg2+ theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de nivel educativo por sexo")+scale_x_discrete("Conteo")
+
+
+```
+
+```{r, include=FALSE}
+mu <- ddply(df0, "EDUCATION", summarise, grp.mean=mean(AGE))
+head(mu)
+
+ggarea1 = ggplot(df0, aes(x=AGE, fill=EDUCATION)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=EDUCATION),
+             linetype="dashed")+ theme(legend.position="bottom")+ scale_y_discrete("Conteo")+ scale_x_continuous("Edad")
+```
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+.panelset[
+.panel[.panel-name[Plot]
+
+```{r panel-chunk, fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE, message=FALSE}
+
+gg2 / ggarea1
+
+```
+]
+
+
+
+.panel[.panel-name[R Code]
+
+```{r}
+gg2 = ggplot(df0) +
+  geom_bar(mapping = aes(y=EDUCATION, fill = SEX))+ theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de nivel educativo por sexo") 
+```
+
+```{r}
+mu <- ddply(df0, "EDUCATION", summarise, grp.mean=mean(AGE))
+ggarea1 = ggplot(df0, aes(x=AGE, fill=EDUCATION)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=EDUCATION),
+             linetype="dashed")+ theme(legend.position="bottom")
+```
+
+
+]
+]
+<!-- cerrando diapositiva panel set 1 -->
+
+<!-- abriendo diapositiva panel set 2-->
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Plot]
+
+```{r, include=FALSE}
+mu <- ddply(df0, "MARRIAGE", summarise, grp.mean=mean(AGE))
+
+ggarea1 = ggplot(df0, aes(x=AGE, fill=MARRIAGE)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=MARRIAGE),
+             linetype="dashed")+ theme(legend.position="bottom")+ scale_y_discrete("Conteo")+ scale_x_continuous("Edad")
+
+gg3 = ggplot(df0) +
+  geom_bar(mapping = aes(y=MARRIAGE, fill = SEX))
+gg3 = gg3 + theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de estado civil por sexo")+scale_x_discrete("Conteo")
+```
+
+```{r, fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE, message=FALSE}
+gg3 / ggarea1
+```
+]
+
+
+.panel[.panel-name[R Code]
+
+
+
+```{r}
+gg3 = ggplot(df0) +
+  geom_bar(mapping = aes(y=MARRIAGE, fill = SEX))+ theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de estado civil por sexo")
+```
+
+```{r}
+mu <- ddply(df0, "EDUCATION", summarise, grp.mean=mean(AGE))
+
+ggarea1 = ggplot(df0, aes(x=AGE, fill=EDUCATION)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=EDUCATION),
+             linetype="dashed")+ theme(legend.position="bottom")
+```
+
+]
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+<Br>
+<!-- cerrando diapositiva panel set 2 -->
+
+
+
+### Análisis de perfiles
+
+
+
+El perfil del consumidor estará definido por la moda del estatus de pago (repayment status) a lo largo de los 6 meses (si existen empates se toma el ultimo acumulado)
+
+> 1.- Clientes que no consumieron en ese periodo (mes).
+
+> 2.- Clientes que consumieron y pagaron lo necesario para no generar intereses en ese mes por la deuda correspondiente.
+
+> 3.- Clientes que consumieron y dieron el pago mínimo que siempre genera intereses.
+
+> 4.- Clientes que entran en cartera vencida (impago < 60 días)
+
+> 5.- Clientes que entran en cartera morosa (impago > 60 días)
+
+Lo anterior con base en el estándar bancario.
+
+```{r, echo=FALSE, fig.align="center", fig.cap=NULL, fig.alt="Cover image for MAEA COLOQUIO"}
+#knitr::include_graphics("fondo_de_pantalla.jpg")
+```
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+```{r, include=FALSE}
+
+unique(df0$EDUCATION)
+net_differences_bymonths = df0 %>% 
+  mutate(ND_1 = BILL_AMT1-PAY_AMT1, ND_2 = BILL_AMT2 - PAY_AMT2, ND_3 = BILL_AMT3 - PAY_AMT3, ND_4 = BILL_AMT4 - PAY_AMT4, ND_5 = BILL_AMT5 - PAY_AMT5, ND_6 = BILL_AMT6 - PAY_AMT6) %>% select(ID, SEX, MARRIAGE, AGE, QUANTILE_AGE, EDUCATION, LIMIT_BAL, PAY_1, PAY_AMT1, BILL_AMT1, ND_1, PAY_2, PAY_AMT2, BILL_AMT2, ND_2, PAY_3, PAY_AMT3, BILL_AMT3, ND_3, PAY_4, PAY_AMT4, BILL_AMT4, ND_4, PAY_5, PAY_AMT5, BILL_AMT5, ND_5, PAY_6, PAY_AMT6, BILL_AMT6, ND_6, default.payment.next.month)
+
+net_differences_bymonths
+"
+-2: No consumption; -1: Paid in full; 0: The use of revolving credit; 1 = payment delay for one month; 2 = payment delay for two months; . . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.
+"
+
+"
+Una opinión en una discusión ofrece este otro vistazo de algunos de los valores que pueden tomar la variable PAY_X
+-2 = Balance paid in full and no transactions this period (we may refer to this credit card account as having been 'inactive' this period)
+
+-1 = Balance paid in full, but account has a positive balance at end of period due to recent transactions for which payment has not yet come due
+
+0 = Customer paid the minimum due amount, but not the entire balance. I.e., the customer paid enough for their account to remain in good standing, but did revolve a balance
+"
+```
+
+```{r, include=FALSE}
+
+
+#Creando una función que saque la moda de las variables que catalogan el estado del pago del mes (repayment status)
+mode_function = function(x){
+x = as.numeric(as.character(x)) # Cambia a numérico sin cambiar los valores
+r = as.numeric(names(which.max(table(x)))[1]) # Primer numero con mayor frecuencia
+return(r)
+}
+
+net_differences_bymonths_pay = net_differences_bymonths %>% select(PAY_1, PAY_2, PAY_3, PAY_4, PAY_5, PAY_6)
+
+net_differences_bymonths$CLIENT_TYPE = apply(net_differences_bymonths_pay[,-1], 1, mode_function)
+net_differences_bymonths$CLIENT_TYPE = as.factor(net_differences_bymonths$CLIENT_TYPE)
+net_differences_bymonths$CLIENT_PROFILE = apply(net_differences_bymonths_pay[,-1], 1, mode_function)
+net_differences_bymonths$CLIENT_PROFILE = factor(net_differences_bymonths$CLIENT_PROFILE, levels = c(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8), labels =  c('Perfil_1','Perfil_2', 'Perfil_3', 'Perfil_4', 'Perfil_4', 'Perfil_5', 'Perfil_5', 'Perfil_5', 'Perfil_5', 'Perfil_5', 'Perfil_5'))
+
+ggperf1 = ggplot(net_differences_bymonths) +
+  geom_bar(mapping = aes(x=CLIENT_PROFILE, fill=SEX))+ theme(plot.title=element_text(size=15))+
+  ggtitle("Perfil del cliente por sexo") + scale_x_discrete("Perfiles de cliente", labels = c("Perfil_1" = "1","Perfil_2" = "2", "Perfil_3" = "4","Perfil_4" = "4","Perfil_5" = "5"))+ scale_y_discrete("Conteo")
+
+
+
+ggperf2 = ggplot(net_differences_bymonths) +
+  geom_bar(mapping = aes(x=CLIENT_PROFILE, fill=MARRIAGE))+ theme(plot.title=element_text(size=15))+
+  ggtitle("Perfil del cliente por sexo")+ scale_x_discrete("Perfiles de cliente", labels = c("Perfil_1" = "1","Perfil_2" = "2", "Perfil_3" = "4","Perfil_4" = "4","Perfil_5" = "5"))+ scale_y_discrete("Conteo")
+
+```
+
+
+```{r, include=FALSE}
+conteos_perfil = c()
+conteos_perfil_p = c()
+for (x in unique(net_differences_bymonths$CLIENT_PROFILE)){
+  temp = nrow(filter(net_differences_bymonths, CLIENT_PROFILE == x))
+  if (temp != 0){
+    conteos_perfil = c(conteos_perfil, temp)
+  }
+}
+conteos_perfil_p = c()
+for (x in conteos_perfil){
+  temp = x / sum(conteos_perfil) * 100
+  conteos_perfil_p = c(conteos_perfil_p, round(temp, 1))
+}
+df_categ = data.frame(categoria = as.factor(unique(net_differences_bymonths$CLIENT_PROFILE[!is.na(net_differences_bymonths$CLIENT_PROFILE)])), conteo = conteos_perfil_p)
+
+conteos_perfil_perc = c()
+for (x in conteos_perfil_p){
+  if (x > 1){
+    temp = glue("{x}%")
+  conteos_perfil_perc = c(conteos_perfil_perc, temp)
+  }
+  else {#Excluyendo valores por debajo del 1 % (nos restorban en el gráfico)
+    conteos_perfil_perc = c(conteos_perfil_perc, "")
+  }
+}
+
+ggpie1 = ggplot(df_categ, aes(x= "",y = conteo, fill = categoria))+
+	geom_bar(stat = "identity", color = "white")+coord_polar(theta = "y") + geom_text(aes(label = conteos_perfil_perc),
+		position = position_stack(vjust = 0.5), color = "white", size = 3)+ labs(title = "Conteo de individuos por perfil de consumidor")
+```
+
+
+.panelset[
+.panel[.panel-name[Plot 1]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+ggpie1
+```
+
+
+]
+.panel[.panel-name[Plot 2]
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+ggperf1 + ggperf2
+```
+
+]
+.panel[.panel-name[R Code]
+
+```{r}
+conteos_perfil = c()
+conteos_perfil_p = c()
+for (x in unique(net_differences_bymonths$CLIENT_PROFILE)){
+  temp = nrow(filter(net_differences_bymonths, CLIENT_PROFILE == x))
+  if (temp != 0){
+    conteos_perfil = c(conteos_perfil, temp)
+  }
+}
+conteos_perfil_p = c()
+for (x in conteos_perfil){
+  temp = x / sum(conteos_perfil) * 100
+  conteos_perfil_p = c(conteos_perfil_p, round(temp, 1))
+}
+df_categ = data.frame(categoria = as.factor(unique(net_differences_bymonths$CLIENT_PROFILE[!is.na(net_differences_bymonths$CLIENT_PROFILE)])), conteo = conteos_perfil_p)
+```
+
+```{r}
+conteos_perfil_perc = c()
+for (x in conteos_perfil_p){
+  if (x > 1){
+    temp = glue("{x}%")
+  conteos_perfil_perc = c(conteos_perfil_perc, temp)
+  }
+  else {#Excluyendo valores por debajo del 1 % (nos restorban en el gráfico)
+    conteos_perfil_perc = c(conteos_perfil_perc, "")
+  }
+}
+
+ggpie1 = ggplot(df_categ, aes(x= "",y = conteo, fill = categoria))+
+	geom_bar(stat = "identity", color = "white")+coord_polar(theta = "y") + geom_text(aes(label = conteos_perfil_perc),
+		position = position_stack(vjust = 0.5), color = "white", size = 3)+ labs(title = "Conteo de individuos por perfil de consumidor")
+```
+
+
+
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+gglimbp2_2 =  ggplot(net_differences_bymonths,mapping = aes(x=SEX, y = LIMIT_BAL, fill= CLIENT_PROFILE)) +
+  geom_boxplot()+
+  stat_summary(fun= "mode_function", geom = "point", shape = 23, size = 4, fill = "yellow")+
+  annotate("text",
+           x = 1:length(table(net_differences_bymonths$SEX)),
+           y = aggregate(LIMIT_BAL ~ SEX, net_differences_bymonths, median)[ , 2],
+           label = table(net_differences_bymonths$SEX),
+           col = "red",
+           vjust = - 27)+ theme(plot.title=element_text(size=14))+
+  theme(plot.title=element_text(size=15))+
+  ggtitle("Distribución del limite crediticio por sexo y perfil del cliente")+scale_x_discrete("Sexo")+scale_y_continuous("Monto crédito máximo")
+
+gglimbp2_2
+```
+
+
+]
+.panel[.panel-name[Heatmap]
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+net_differences_bymonths2 = select(net_differences_bymonths, CLIENT_PROFILE, EDUCATION, QUANTILE_AGE, MARRIAGE, SEX, LIMIT_BAL)
+df_tile4 = net_differences_bymonths2 %>% group_by(CLIENT_PROFILE, SEX) %>%
+                   summarise(mean_cred_limit = round(mean(LIMIT_BAL)), .groups = 'drop') %>%  as.data.frame(df_tile4) %>% mutate(mean_cred_limit_h = round(mean_cred_limit / 1000)) %>% select(CLIENT_PROFILE, SEX, mean_cred_limit, mean_cred_limit_h)
+
+df_tile4 = df_tile4[order(df_tile4$CLIENT_PROFILE), ]
+names(df_tile4) = c("Perfil", "Sexo", "mean_cred_limit", "mean_cred_limit_h")
+rownames(df_tile4)<-1:nrow(df_tile4)
+
+ggplot(df_tile4, aes( x= Perfil, y = Sexo, fill = mean_cred_limit)) +
+  geom_tile(color = "white",
+            lwd = 1,
+            linetype = 1)+
+  guides(fill = guide_colourbar(barwidth = 0.5,
+                                barheight = 12))+ theme(plot.title=element_text(size=10))+
+  ggtitle("Limite crediticio promedio por perfil y por estado sexo (miles de dólares)")+
+  geom_text(aes(label = mean_cred_limit_h), color = "white", size = 6)
+df_tile4
+```
+
+]
+.panel[.panel-name[Flextable]
+
+```{r, include=FALSE}
+##Flextable
+propt = prop.table(table(net_differences_bymonths$SEX, net_differences_bymonths$CLIENT_PROFILE))
+propt <- rbind(propt, Total = colSums(propt))
+propGlob = apply(
+  propt*100,
+  2,
+  function(u) sprintf( "%.1f%%", u )
+)
+propGlob
+propGlob_f2 = propGlob %>% as.data.frame.matrix() %>% mutate(variables = c("Hombre", "Mujer", "TOTALES")) %>% select(variables, Perfil_1, Perfil_2, Perfil_3, Perfil_4,Perfil_5) %>% flextable(col_keys =  c("variables", "Perfil_1","Perfil_2", "Perfil_3", "Perfil_4", "Perfil_5")) %>% theme_vader()
+
+
+```
+
+```{r, echo=FALSE}
+propGlob_f2
+```
+
+]
+
+
+.panel[.panel-name[Anova]
+
+
+
+```{r, echo=FALSE, include=FALSE}
+library(nortest)
+bd_anovas = select(net_differences_bymonths, ID, MARRIAGE, EDUCATION, SEX, QUANTILE_AGE, CLIENT_PROFILE, LIMIT_BAL)
+```
+
+```{r, echo=FALSE, include=FALSE}
+attach(bd_anovas)
+```
+
+```{r}
+# aov(LIMIT_BAL ~ SEX) -> P value <1.64e-05 ***
+aov(LIMIT_BAL ~ SEX) %>% TukeyHSD()
+aov(LIMIT_BAL ~ SEX) %>% residuals() %>% lillie.test()
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+```{r}
+kruskal.test(LIMIT_BAL ~ SEX, data = bd_anovas)
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$SEX, 
+                 p.adj = "bonferroni")
+```
+
+]]
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+gglimbp3_2 = ggplot(net_differences_bymonths, mapping = aes(x=EDUCATION, y = LIMIT_BAL, fill=CLIENT_PROFILE)) +
+  geom_boxplot()+ 
+  stat_summary(fun= "mode_function", geom = "point", shape = 23, size = 4, fill = "yellow")+
+  annotate("text",
+           x = 1:length(table(net_differences_bymonths$EDUCATION)),
+           y = aggregate(LIMIT_BAL ~ EDUCATION, net_differences_bymonths, median)[ , 2],
+           label = table(net_differences_bymonths$EDUCATION),
+           col = "red",
+           vjust = - 27)+ theme(plot.title=element_text(size=14))+
+  theme(plot.title=element_text(size=14))+
+  ggtitle("Distribución del limite crediticio por educación y perfil del cliente")+scale_x_discrete("Educación")+scale_y_continuous("Monto crédito máximo")
+gglimbp3_2
+
+
+```
+
+
+]
+.panel[.panel-name[Heatmap]
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+df_tile2 = net_differences_bymonths2 %>% group_by(CLIENT_PROFILE, EDUCATION) %>%
+                   summarise(mean_cred_limit = round(mean(LIMIT_BAL)), .groups = 'drop') %>%  as.data.frame(df_tile2) %>% mutate(mean_cred_limit_h = round(mean_cred_limit / 1000)) %>% select(CLIENT_PROFILE, EDUCATION, mean_cred_limit, mean_cred_limit_h)
+
+df_tile2 = df_tile2[order(df_tile2$CLIENT_PROFILE), ]
+names(df_tile2) = c("Perfil", "Educacion", "mean_cred_limit", "mean_cred_limit_h")
+rownames(df_tile2)<-1:nrow(df_tile2)
+
+ggplot(df_tile2, aes( x= Perfil, y = Educacion, fill = mean_cred_limit)) +
+  geom_tile(color = "white",
+            lwd = 1,
+            linetype = 1)+
+  guides(fill = guide_colourbar(barwidth = 0.5,
+                                barheight = 12))+ theme(plot.title=element_text(size=10))+
+  ggtitle("Limite crediticio promedio por perfil y por nivel educativo (miles de dólares)")+
+  geom_text(aes(label = mean_cred_limit_h), color = "white", size = 6)
+df_tile2
+```
+
+]
+.panel[.panel-name[Flextable]
+
+```{r, include=FALSE}
+##Flextable
+
+propt = prop.table(table(net_differences_bymonths$EDUCATION, net_differences_bymonths$CLIENT_PROFILE))
+propt <- rbind(propt, Total = colSums(propt))
+propGlob = apply(
+  propt*100,
+  2,
+  function(u) sprintf( "%.1f%%", u )
+)
+
+propGlob
+propGlob_f2 = propGlob %>% as.data.frame.matrix() %>% mutate(variables = c("graduate school", "university", "high school", "others", "TOTALES")) %>% select(variables, Perfil_1, Perfil_2, Perfil_3, Perfil_4,Perfil_5) %>% flextable(col_keys =  c("variables", "Perfil_1","Perfil_2", "Perfil_3", "Perfil_4", "Perfil_5")) %>% theme_vader()
+
+```
+
+```{r, echo=FALSE}
+propGlob_f2
+```
+
+]
+
+
+.panel[.panel-name[Anova]
+
+```{r, echo=FALSE, include=FALSE}
+attach(bd_anovas)
+```
+
+```{r}
+# aov(LIMIT_BAL ~ EDUCATION) -> P value <2e-16 ***
+aov(LIMIT_BAL ~ EDUCATION) %>% TukeyHSD()
+aov(LIMIT_BAL ~ EDUCATION) %>% residuals() %>% lillie.test()
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+```{r}
+kruskal.test(LIMIT_BAL ~ EDUCATION, data = bd_anovas)
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$EDUCATION, 
+                 p.adj = "bonferroni")
+```
+
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+gglimbp4_2 = ggplot(net_differences_bymonths, mapping = aes(x=MARRIAGE, y = LIMIT_BAL, fill=CLIENT_PROFILE)) +
+  geom_boxplot()+
+  stat_summary(fun= "mode_function", geom = "point", shape = 23, size = 4, fill = "yellow")+
+  annotate("text",
+           x = 1:length(table(net_differences_bymonths$MARRIAGE)),
+           y = aggregate(LIMIT_BAL ~ MARRIAGE, net_differences_bymonths, median)[ , 2],
+           label = table(net_differences_bymonths$MARRIAGE),
+           col = "red",
+           vjust = - 27)+ theme(plot.title=element_text(size=14))+ theme(plot.title=element_text(size=14))+
+  ggtitle("Distribución del limite crediticio por civil y perfil del cliente")+scale_x_discrete("Estado civil")+scale_y_continuous("Monto crédito máximo")
+gglimbp4_2
+```
+
+
+]
+.panel[.panel-name[Heatmap]
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+df_tile3 = net_differences_bymonths2 %>% group_by(CLIENT_PROFILE, MARRIAGE) %>%
+                   summarise(mean_cred_limit = round(mean(LIMIT_BAL)), .groups = 'drop') %>%  as.data.frame(df_tile3) %>% mutate(mean_cred_limit_h = round(mean_cred_limit / 1000)) %>% select(CLIENT_PROFILE, MARRIAGE, mean_cred_limit, mean_cred_limit_h)
+
+df_tile3 = df_tile3[order(df_tile3$CLIENT_PROFILE), ]
+names(df_tile3) = c("Perfil", "Estado_civil", "mean_cred_limit", "mean_cred_limit_h")
+rownames(df_tile3)<-1:nrow(df_tile3)
+
+ggplot(df_tile3, aes( x= Perfil, y = Estado_civil, fill = mean_cred_limit)) +
+  geom_tile(color = "white",
+            lwd = 1,
+            linetype = 1)+
+  guides(fill = guide_colourbar(barwidth = 0.5,
+                                barheight = 12))+ theme(plot.title=element_text(size=10))+
+  ggtitle("Limite crediticio promedio por perfil y por estado civil (miles de dólares)")+
+  geom_text(aes(label = mean_cred_limit_h), color = "white", size = 6)
+df_tile3
+```
+
+]
+.panel[.panel-name[Flextable]
+
+```{r, include=FALSE}
+##Flextable
+propt = prop.table(table(net_differences_bymonths$MARRIAGE, net_differences_bymonths$CLIENT_PROFILE))
+propt <- rbind(propt, Total = colSums(propt))
+propGlob = apply(
+  propt*100,
+  2,
+  function(u) sprintf( "%.1f%%", u )
+)
+propGlob
+propGlob_f4 = propGlob %>% as.data.frame.matrix() %>% mutate(variables = c("Casado", "Soltero", "Divorciado", "TOTALES")) %>% select(variables, Perfil_1, Perfil_2, Perfil_3, Perfil_4,Perfil_5) %>% flextable(col_keys =  c("variables", "Perfil_1","Perfil_2", "Perfil_3", "Perfil_4", "Perfil_5")) %>% theme_vader()
+```
+
+```{r, echo=FALSE}
+propGlob_f4
+```
+
+
+]
+
+.panel[.panel-name[Anova]
+
+```{r, echo=FALSE, include=FALSE}
+attach(bd_anovas)
+```
+
+
+```{r}
+# aov(LIMIT_BAL ~ MARRIAGE) -> P value <2e-16 ***
+aov(LIMIT_BAL ~ MARRIAGE) %>% TukeyHSD()
+aov(LIMIT_BAL ~ MARRIAGE) %>% residuals() %>% lillie.test()
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+```{r}
+kruskal.test(LIMIT_BAL ~ MARRIAGE, data = bd_anovas)
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$MARRIAGE, 
+                 p.adj = "bonferroni")
+```
+
+
+]]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+net_differences_bymonths$QUANTILE_AGE = factor(net_differences_bymonths$QUANTILE_AGE, levels = c('42 - 79 anios', '35 - 41 anios', '29 - 34 anios','21 - 28 anios'))
+gglimbp5_2 = ggplot(net_differences_bymonths, mapping = aes(x=QUANTILE_AGE, y = LIMIT_BAL, fill=CLIENT_PROFILE)) +
+  geom_boxplot()+
+  stat_summary(fun= "mode_function", geom = "point", shape = 23, size = 4, fill = "yellow")+
+  annotate("text",
+           x = 1:length(table(net_differences_bymonths$QUANTILE_AGE)),
+           y = aggregate(LIMIT_BAL ~ QUANTILE_AGE, net_differences_bymonths, median)[ , 2],
+           label = table(net_differences_bymonths$QUANTILE_AGE),
+           col = "red",
+           vjust = - 27)+ theme(plot.title=element_text(size=14))+
+  theme(plot.title=element_text(size=14))+
+  ggtitle("Distribución del limite crediticio por quantil de edad y perfil")+scale_x_discrete("Quantil-Edad")+scale_y_continuous("Monto crédito máximo")
+gglimbp5_2
+
+```
+
+
+]
+.panel[.panel-name[Heatmap]
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+df_tile4 = net_differences_bymonths2 %>% group_by(CLIENT_PROFILE, QUANTILE_AGE) %>%
+                   summarise(mean_cred_limit = round(mean(LIMIT_BAL)), .groups = 'drop') %>%  as.data.frame(df_tile4) %>% mutate(mean_cred_limit_h = round(mean_cred_limit / 1000)) %>% select(CLIENT_PROFILE, QUANTILE_AGE, mean_cred_limit, mean_cred_limit_h)
+
+df_tile4 = df_tile4[order(df_tile4$CLIENT_PROFILE), ]
+names(df_tile4) = c("Perfil", "Quantil_edad", "mean_cred_limit", "mean_cred_limit_h")
+rownames(df_tile4)<-1:nrow(df_tile4)
+
+ggplot(df_tile4, aes( x= Perfil, y = Quantil_edad, fill = mean_cred_limit)) +
+  geom_tile(color = "white",
+            lwd = 1,
+            linetype = 1)+
+  guides(fill = guide_colourbar(barwidth = 0.5,
+                                barheight = 12))+ theme(plot.title=element_text(size=10))+
+  ggtitle("Limite crediticio promedio por perfil y por quantil de edad (miles de dólares)")+
+  geom_text(aes(label = mean_cred_limit_h), color = "white", size = 6)
+df_tile4
+```
+
+]
+.panel[.panel-name[Flextable]
+
+```{r, include=FALSE}
+##Flextable
+propt = prop.table(table(net_differences_bymonths$QUANTILE_AGE, net_differences_bymonths$CLIENT_PROFILE))
+propt <- rbind(propt, Total = colSums(propt))
+propGlob = apply(
+  propt*100,
+  2,
+  function(u) sprintf( "%.1f%%", u )
+)
+
+#unique(df0$QUANTILE_AGE)
+#propGlob
+propGlob_f5 = propGlob %>% as.data.frame.matrix() %>% mutate(variables = c("21 - 28 anios", "29 - 34 anios", "35 - 41 anios", "42 - 79 anios", "TOTALES")) %>% select(variables, Perfil_1, Perfil_2, Perfil_3, Perfil_4,Perfil_5) %>% flextable(col_keys =  c("variables", "Perfil_1","Perfil_2", "Perfil_3", "Perfil_4", "Perfil_5")) %>% theme_vader()
+```
+
+```{r, echo=FALSE}
+propGlob_f5
+```
+
+
+]
+
+.panel[.panel-name[Anova]
+```{r, echo=FALSE, include=FALSE}
+attach(bd_anovas)
+```
+
+```{r}
+# aov(LIMIT_BAL ~ QUANTILE_AGE) -> P value <2e-16 ***
+aov(LIMIT_BAL ~ QUANTILE_AGE) %>% TukeyHSD()
+aov(LIMIT_BAL ~ QUANTILE_AGE) %>% residuals() %>% lillie.test()
+```
+
+]
+
+
+.panel[.panel-name[Prueba H]
+
+```{r}
+kruskal.test(LIMIT_BAL ~ QUANTILE_AGE, data = bd_anovas)
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$QUANTILE_AGE, 
+                 p.adj = "bonferroni")
+```
+
+
+]
+
+
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot Perfiles]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+gglimbp5_2 = ggplot(net_differences_bymonths, mapping = aes(x=CLIENT_PROFILE, y = LIMIT_BAL)) +
+  geom_boxplot()+
+  stat_summary(fun= "mode_function", geom = "point", shape = 23, size = 4, fill = "yellow")+
+  annotate("text",
+           x = 1:length(table(net_differences_bymonths$CLIENT_PROFILE)),
+           y = aggregate(LIMIT_BAL ~ CLIENT_PROFILE, net_differences_bymonths, median)[ , 2],
+           label = table(net_differences_bymonths$CLIENT_PROFILE),
+           col = "red",
+           vjust = - 25)+ theme(plot.title=element_text(size=14))+
+  theme(plot.title=element_text(size=14))+
+  ggtitle("Distribución del limite crediticio por quantil de edad y perfil")+scale_x_discrete("Perfiles")+scale_y_continuous("Monto crédito máximo")
+gglimbp5_2
+
+```
+
+
+]
+
+.panel[
+.panel-name[Anova Perfiles]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+
+anova1 = aov(LIMIT_BAL~CLIENT_PROFILE)
+TukeyHSD(anova1)
+
+```
+.panel[
+.panel-name[Anova Perfiles2]
+
+```{r fig.asp = 3/4, fig.align = 'center', echo = FALSE, out.width = "100%", dpi= 300, warning = FALSE}
+anova2 = lm(LIMIT_BAL~CLIENT_PROFILE)
+tukey1 = TukeyHSD(aov(anova2))
+plot(tukey1, col="red", las=1, cex.axis=0.5, cex.lab=0.5, cex=0.5)
+```
+
+
+
+]]
+
+
+]
+
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+```{r, include=FALSE}
+
+names(net_differences_bymonths)
+nrow(net_differences_bymonths)
+net_differences_bymonths_grouped = select(net_differences_bymonths, SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE,  LIMIT_BAL)
+
+
+net_differences_bymonths_grouped = net_differences_bymonths_grouped %>% group_by(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE) %>% summarise("MEAN_LIMIT" = round(mean(LIMIT_BAL)/1000), "MIN" = min(LIMIT_BAL/1000), "MAX" = round(max(LIMIT_BAL)/1000), "SD" = round(sd(LIMIT_BAL)/1000),"N" = length(LIMIT_BAL), "PROP" = round((length(LIMIT_BAL)/nrow(net_differences_bymonths))*100, 2),  .groups = 'drop')
+
+
+nrow(net_differences_bymonths_grouped)
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[net_differences_bymonths_grouped$N > 50, ]
+nrow(net_differences_bymonths_grouped)
+
+net_differences_bymonths_grouped = rename(net_differences_bymonths_grouped, PROFILE = CLIENT_PROFILE)
+
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[order(net_differences_bymonths_grouped$MEAN_LIMIT, decreasing = TRUE),  ]
+
+
+
+
+```
+
+
+```{r, include=FALSE}
+#Cantidades expresadas en miles de dólares. Se eliminan agrupaciones menores a 50 individuos
+table_prop = head(net_differences_bymonths_grouped, 10) %>% as.data.frame() %>% select(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, PROFILE, "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP") %>% flextable(col_keys =  c("SEX", "MARRIAGE","QUANTILE_AGE", "EDUCATION","PROFILE", "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP")) %>% theme_vader() %>% bold(~ SEX == "Mujer", bold = TRUE)
+
+```
+
+
+.panelset[
+.panel[.panel-name[Flextable]
+
+```{r, echo=FALSE}
+table_prop
+```
+
+
+.panel[.panel-name[R Code]
+
+```{r}
+
+net_differences_bymonths_grouped = select(net_differences_bymonths, SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE,  LIMIT_BAL)
+
+#Generando nuevas columnas
+net_differences_bymonths_grouped = net_differences_bymonths_grouped %>% group_by(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE) %>% summarise("MEAN_LIMIT" = round(mean(LIMIT_BAL)/1000), "MIN" = min(LIMIT_BAL/1000), "MAX" = round(max(LIMIT_BAL)/1000), "SD" = round(sd(LIMIT_BAL)/1000),"N" = length(LIMIT_BAL), "PROP" = round((length(LIMIT_BAL)/nrow(net_differences_bymonths))*100, 2),  .groups = 'drop')
+
+#Filtrando por al menos 50 ocurrencias
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[net_differences_bymonths_grouped$N > 50, ]
+
+#Ordenando de mayor a menor
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[order(net_differences_bymonths_grouped$MEAN_LIMIT, decreasing = TRUE),  ]
+
+net_differences_bymonths_grouped = rename(net_differences_bymonths_grouped, PROFILE = CLIENT_PROFILE)
+
+
+```
+
+```{r}
+#Cantidades expresadas en miles de dólares. Se eliminan agrupaciones menores a 50 individuos
+table_prop = head(net_differences_bymonths_grouped, 9) %>% as.data.frame() %>% select(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, PROFILE, "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP") %>% flextable(col_keys =  c("SEX", "MARRIAGE","QUANTILE_AGE", "EDUCATION","PROFILE", "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP")) %>% theme_vader() %>% bold(~ SEX == "Mujer", bold = TRUE)
+
+```
+]
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+<Br>
+### Conclusiones
+
+Luego del analisis descriptivo y del analisis de varianzas entre agrupaciones de variables, se concluye que:
+
+> Se rechaza la hipótesis (nula) todos los careos, excepto en (29-34 años vs 35-49 años y perfil 4 vs perfil 5),  en donde esta hipótesis asume que las medias de dos o más agrupaciones de la muestra son iguales.
+
+> El comportamiento crediticio mes con mes parece ser la variable que tiene más impacto en el limite crediticio, aunque en su mayoría todas parecen tener influencia sobre esta variable de respuesta. Faltaría quizás generar un modelo de interacciones para evaluar que variables con cuales otras generan la mayor variabilidad en la variable de respuesta.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+<Br>
+### Referencias
+
+> Ruza, C. & Curbera, P. (2013). El riesgo de crédito en perspectiva. Madrid. Ediciones Universidad
+Nacional de estudios a distancias.

@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis estadístico</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Alexis Rangel" />
+    <meta name="date" content="2022-12-07" />
+    <script src="Presentacion2_ARC_files/header-attrs-2.16/header-attrs.js"></script>
+    <link href="Presentacion2_ARC_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="Presentacion2_ARC_files/panelset-0.2.6/panelset.js"></script>
+    <link href="Presentacion2_ARC_files/tabwid-1.1.2/tabwid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Análisis estadístico
+]
+.author[
+### Alexis Rangel
+]
+.date[
+### 2022-12-07
+]
+
+---
+
+name: about-me
+layout: false
+class: about-me-slide, middle, center
+background-color: var(--DarkRed)
+
+# About me
+
+&lt;img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/92005917?v=4.png" width="250px"/&gt;
+s
+## Alexis Rangel Calvo
+#### Lic en economía y programador jr
+
+.fade[Propedeutico MAEA FACE UJED]
+
+[<svg aria-label="Twitter" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>Twitter</title><path d="M459.4 151.7c.325 4.548 .325 9.097 .325 13.65 0 138.7-105.6 298.6-298.6 298.6-59.45 0-114.7-17.22-161.1-47.11 8.447 .974 16.57 1.299 25.34 1.299 49.06 0 94.21-16.57 130.3-44.83-46.13-.975-84.79-31.19-98.11-72.77 6.498 .974 12.99 1.624 19.82 1.624 9.421 0 18.84-1.3 27.61-3.573-48.08-9.747-84.14-51.98-84.14-102.1v-1.299c13.97 7.797 30.21 12.67 47.43 13.32-28.26-18.84-46.78-51.01-46.78-87.39 0-19.49 5.197-37.36 14.29-52.95 51.65 63.67 129.3 105.3 216.4 109.8-1.624-7.797-2.599-15.92-2.599-24.04 0-57.83 46.78-104.9 104.9-104.9 30.21 0 57.5 12.67 76.67 33.14 23.72-4.548 46.46-13.32 66.6-25.34-7.798 24.37-24.37 44.83-46.13 57.83 21.12-2.273 41.58-8.122 60.43-16.24-14.29 20.79-32.16 39.31-52.63 54.25z"/></svg> @alexrangelcalvo](https://mobile.twitter.com/alexrangelcalvo)
+[<svg aria-label="GitHub" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><title>GitHub</title><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @alexisrangelcalvo](https://github.com/alexisrangelcalvo)
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+
+&lt;Br&gt;
+### Sobre la base de datos
+
+&lt;div style="text-align: justify"&gt;La base de datos analizada y estudiada en el presente proyecto fue encontrada en la comunidad de Kaggle, constó de 30 mil registros en bruto relativos a información financiera con fecha de abril del 2005 a septiembre del mismo año, e incluyen el historial y comportamiento crediticio, como variables demográficas de una misma comunidad en un mismo periodo.&lt;div/&gt;
+&lt;Hr&gt;
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+### Planteamiento del problema
+
+
+
+&lt;div style="text-align: justify"&gt;En la mencionada base de datos contamos con variables demográficas de tipo discretas y del comportamiento del uso de tarjetas de crédito, de tipo continua, para cada cliente.&lt;div/&gt;
+
+&lt;Br&gt;
+
+&lt;div style="text-align: justify"&gt;*¿Hay alguna de estas variables (edad, estado civil, el comportamiento crediticio mes con mes) que pueda explicar el porqué algunos clientes tienen mucho más limite crediticio que otros? ¿Se puede modelar una aproximación a dicha relación?*&lt;div/&gt;
+&lt;Hr&gt;
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+###Objetivo general
+
+
+&lt;div style="text-align: justify"&gt;Describir el comportamiento de los usuarios de tarjetas de crédito, luego de una clasificación por tipo de perfil de cliente basado en el consumo-pago de la linea de crédito mes con mes, y finalmente evaluar el efecto de uno o más factores  &lt;Sexo, Educación, Estado civil, Edad (quantil) y perfil de consumidor&gt; sobre la media, mediana y dispersión de la variable continua &lt;Crédito máximo&gt;. &lt;div/&gt;
+&lt;Hr&gt;
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+&lt;Br&gt;
+###Objetivos particulares
+
+&lt;div style="text-align: justify"&gt;* Tratamiento, limpieza de datos y exclusión de registros de clientes con datos incompletos que no permitan su estudio.&lt;div/&gt;
+&lt;Br&gt;
+&lt;div style="text-align: justify"&gt;* Describir a los usuarios, a su comportamiento en el uso de tarjetas de crédito en los 6 meses disponibles y establecer perfiles de consumo (crear una nueva variable) con base en el comportamiento consumo-pago de la linea de crédito. Generar una sintesis, elaborar tablas y graficas que apoyen en esta tarea.&lt;div/&gt;
+&lt;Br&gt;
+&lt;div style="text-align: justify"&gt;* Evaluar el efecto de uno o más factores  &lt;Sexo, Educación, Estado civil, Edad (quantil) y perfil de consumidor&gt; sobre la media, mediana y dispersión de la variable de respuesta continua &lt;Crédito máximo&gt;&lt;div/&gt;
+
+&lt;Hr&gt;
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+&lt;Br&gt;
+###Alcances
+
+Dar una primera aproximación a la clásificación o clusterizarización de perfiles.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+###Limitaciones
+
+* Tiempo.
+* Limitación personal en el conocimiento de estadística.
+* Limitación personal en el conocimiento de la programación en R studio.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+###Marco teórico
+
+
+&lt;div style="text-align: justify"&gt;**Definiendo perfiles de clientes:** La variable PAY_X (1:6) define el estatus del pago de septiembre a abril en orden inverso. Cada mes se generá este estatus de pago al evaluar la variable BILL_AMTX (1:6), que es la cantidad a pagar en el mes, contra la variable PAY_AMT1, que es la cantidad pagada por el usuario en el mes.&lt;div/&gt;
+
+
+
+En la documentación de la propia base se establecen el significado para cada estatus de pago:
++ -2 indica no consumo en el periodo (que no se utilizó la TC)
++ -1 indica que el saldo de la TC fue pagado en su totalidad.
++ 0  indica que se uso un crédito revolvente (se pagó el mínimo para no generar intereses, pero no se liquido el crédito)
++ 1 indica que el  pago esta retrasado por un mes (30 días)
++ 2 indica que el pago esta retrasado por dos meses (60 días)
++ 3 indica que el pago esta retrasado por dos meses (90 días)
++ …
++ 9 indica que el pago esta retrasado por nueve meses o más (&gt;= 270 días)
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+###Metodología:
+
+&lt;div style="text-align: justify"&gt;Mediante el uso del software estadístico R y su interfaz R studio, y con los conocimientos aprendidos en los modulos del curso propedeutico, se generá un análisis se acota en el campo cuantitativo, de tipo descriptivo, con un diseño no experimental longitudinal de tendencia. La población estuvo conformada por 30 mil registros de usuarios de tarjetas de crédito en Taiwan para el periodo de abril a septiembre (6 meses) del 2005.
+
+Para la presentación visual de este proyecto se optó por usar slides en r markdown con moon reader, la paquetería Xaringan, CSS y el maquetado con HTML, con el fin de explorar otras formatos de presentaciones alternos.&lt;div/&gt;
+
+&lt;Hr&gt;
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+&lt;Br&gt;
+### ¿Por qué usar R markdown como presentación?
+
+Porque permite hacer presentaciones donde se puede incluir fácilmente las lineas de código con el fin de mostrar los procesos y los resultados obtenidos, facilitando más el entendimiento del lector dado que es una lectura más amigable así combatir el tedioso screenshot, copy and paste de R a PPT o Word. Creando presentaciones útiles para el análisis y ciencia de datos.
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+
+
+
+
+
+
+
+&lt;Br&gt;
+###Conociendo las variables de estudio
+
+
+```
+##  [1] "ID"                         "LIMIT_BAL"                 
+##  [3] "SEX"                        "EDUCATION"                 
+##  [5] "MARRIAGE"                   "AGE"                       
+##  [7] "PAY_1"                      "PAY_2"                     
+##  [9] "PAY_3"                      "PAY_4"                     
+## [11] "PAY_5"                      "PAY_6"                     
+## [13] "BILL_AMT1"                  "BILL_AMT2"                 
+## [15] "BILL_AMT3"                  "BILL_AMT4"                 
+## [17] "BILL_AMT5"                  "BILL_AMT6"                 
+## [19] "PAY_AMT1"                   "PAY_AMT2"                  
+## [21] "PAY_AMT3"                   "PAY_AMT4"                  
+## [23] "PAY_AMT5"                   "PAY_AMT6"                  
+## [25] "default.payment.next.month" "QUANTILE_AGE"
+```
+
+
+
+
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Plot]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/panel-chunk-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+.panel[.panel-name[R Code]
+
+
+```r
+gg2 = ggplot(df0) +
+  geom_bar(mapping = aes(y=EDUCATION, fill = SEX))+ theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de nivel educativo por sexo") 
+```
+
+
+```r
+mu &lt;- ddply(df0, "EDUCATION", summarise, grp.mean=mean(AGE))
+ggarea1 = ggplot(df0, aes(x=AGE, fill=EDUCATION)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=EDUCATION),
+             linetype="dashed")+ theme(legend.position="bottom")
+```
+
+
+]
+]
+&lt;!-- cerrando diapositiva panel set 1 --&gt;
+
+&lt;!-- abriendo diapositiva panel set 2--&gt;
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Plot]
+
+
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.panel[.panel-name[R Code]
+
+
+
+
+```r
+gg3 = ggplot(df0) +
+  geom_bar(mapping = aes(y=MARRIAGE, fill = SEX))+ theme(plot.title=element_text(size=10))+
+ ggtitle("Agrupación de estado civil por sexo")
+```
+
+
+```r
+mu &lt;- ddply(df0, "EDUCATION", summarise, grp.mean=mean(AGE))
+
+ggarea1 = ggplot(df0, aes(x=AGE, fill=EDUCATION)) +
+  geom_area(stat ="bin", alpha=0.6) +
+  theme_classic()+geom_vline(data=mu, aes(xintercept=grp.mean, color=EDUCATION),
+             linetype="dashed")+ theme(legend.position="bottom")
+```
+
+]
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+&lt;Br&gt;
+&lt;!-- cerrando diapositiva panel set 2 --&gt;
+
+
+
+### Análisis de perfiles
+
+
+
+El perfil del consumidor estará definido por la moda del estatus de pago (repayment status) a lo largo de los 6 meses (si existen empates se toma el ultimo acumulado)
+
+&gt; 1.- Clientes que no consumieron en ese periodo (mes).
+
+&gt; 2.- Clientes que consumieron y pagaron lo necesario para no generar intereses en ese mes por la deuda correspondiente.
+
+&gt; 3.- Clientes que consumieron y dieron el pago mínimo que siempre genera intereses.
+
+&gt; 4.- Clientes que entran en cartera vencida (impago &lt; 60 días)
+
+&gt; 5.- Clientes que entran en cartera morosa (impago &gt; 60 días)
+
+Lo anterior con base en el estándar bancario.
+
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+
+
+
+
+
+
+
+
+.panelset[
+.panel[.panel-name[Plot 1]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+.panel[.panel-name[Plot 2]
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+.panel[.panel-name[R Code]
+
+
+```r
+conteos_perfil = c()
+conteos_perfil_p = c()
+for (x in unique(net_differences_bymonths$CLIENT_PROFILE)){
+  temp = nrow(filter(net_differences_bymonths, CLIENT_PROFILE == x))
+  if (temp != 0){
+    conteos_perfil = c(conteos_perfil, temp)
+  }
+}
+conteos_perfil_p = c()
+for (x in conteos_perfil){
+  temp = x / sum(conteos_perfil) * 100
+  conteos_perfil_p = c(conteos_perfil_p, round(temp, 1))
+}
+df_categ = data.frame(categoria = as.factor(unique(net_differences_bymonths$CLIENT_PROFILE[!is.na(net_differences_bymonths$CLIENT_PROFILE)])), conteo = conteos_perfil_p)
+```
+
+
+```r
+conteos_perfil_perc = c()
+for (x in conteos_perfil_p){
+  if (x &gt; 1){
+    temp = glue("{x}%")
+  conteos_perfil_perc = c(conteos_perfil_perc, temp)
+  }
+  else {#Excluyendo valores por debajo del 1 % (nos restorban en el gráfico)
+    conteos_perfil_perc = c(conteos_perfil_perc, "")
+  }
+}
+
+ggpie1 = ggplot(df_categ, aes(x= "",y = conteo, fill = categoria))+
+	geom_bar(stat = "identity", color = "white")+coord_polar(theta = "y") + geom_text(aes(label = conteos_perfil_perc),
+		position = position_stack(vjust = 0.5), color = "white", size = 3)+ labs(title = "Conteo de individuos por perfil de consumidor")
+```
+
+
+
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+.panel[.panel-name[Heatmap]
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+```
+##      Perfil   Sexo mean_cred_limit mean_cred_limit_h
+## 1  Perfil_1 Hombre          219363               219
+## 2  Perfil_1  Mujer          217391               217
+## 3  Perfil_2 Hombre          216356               216
+## 4  Perfil_2  Mujer          205628               206
+## 5  Perfil_3 Hombre          145298               145
+## 6  Perfil_3  Mujer          154152               154
+## 7  Perfil_4 Hombre          100974               101
+## 8  Perfil_4  Mujer           93045                93
+## 9  Perfil_5 Hombre           66598                67
+## 10 Perfil_5  Mujer           85062                85
+```
+
+]
+.panel[.panel-name[Flextable]
+
+
+
+&lt;template id="125b86c0-7445-4d6c-9da8-4b3b2088ddb2"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-d97f3c64{}.cl-d979e886{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-d979e890{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-d97c4e32{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d97c5bc0{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d97c5bc1{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-d97f3c64'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;variables&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;Perfil_3&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;Perfil_4&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-d97c5bc0"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e886"&gt;Perfil_5&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;5.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;7.5%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;23.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;3.7%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;9.7%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;12.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;32.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;4.7%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;TOTALES&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;14.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;20.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;55.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;8.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-d97c5bc1"&gt;&lt;p class="cl-d97c4e32"&gt;&lt;span class="cl-d979e890"&gt;0.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="d01c346a-7ec8-4c24-9601-9f52d79bd252"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("d01c346a-7ec8-4c24-9601-9f52d79bd252");
+var template = document.getElementById("125b86c0-7445-4d6c-9da8-4b3b2088ddb2");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+]
+
+
+.panel[.panel-name[Anova]
+
+
+
+
+
+
+
+
+```r
+# aov(LIMIT_BAL ~ SEX) -&gt; P value &lt;1.64e-05 ***
+aov(LIMIT_BAL ~ SEX) %&gt;% TukeyHSD()
+```
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = LIMIT_BAL ~ SEX)
+## 
+## $SEX
+##                  diff     lwr      upr    p adj
+## Mujer-Hombre 6606.988 3602.37 9611.607 1.63e-05
+```
+
+```r
+aov(LIMIT_BAL ~ SEX) %&gt;% residuals() %&gt;% lillie.test()
+```
+
+```
+## 
+## 	Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  .
+## D = 0.11206, p-value &lt; 2.2e-16
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+
+```r
+kruskal.test(LIMIT_BAL ~ SEX, data = bd_anovas)
+```
+
+```
+## 
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  LIMIT_BAL by SEX
+## Kruskal-Wallis chi-squared = 97.461, df = 1, p-value &lt; 2.2e-16
+```
+
+```r
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$SEX, 
+                 p.adj = "bonferroni")
+```
+
+```
+## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  bd_anovas$LIMIT_BAL and bd_anovas$SEX 
+## 
+##       Hombre 
+## Mujer 1.6e-05
+## 
+## P value adjustment method: bonferroni
+```
+
+]]
+
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+.panel[.panel-name[Heatmap]
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+```
+##      Perfil       Educacion mean_cred_limit mean_cred_limit_h
+## 1  Perfil_1 graduate school          244538               245
+## 2  Perfil_1      university          198072               198
+## 3  Perfil_1     high school          179517               180
+## 4  Perfil_1          others          201628               202
+## 5  Perfil_2 graduate school          239065               239
+## 6  Perfil_2      university          186074               186
+## 7  Perfil_2     high school          167576               168
+## 8  Perfil_2          others          229333               229
+## 9  Perfil_3 graduate school          195218               195
+## 10 Perfil_3      university          137593               138
+## 11 Perfil_3     high school          114116               114
+## 12 Perfil_3          others          160851               161
+## 13 Perfil_4 graduate school          130045               130
+## 14 Perfil_4      university           87463                87
+## 15 Perfil_4     high school           76163                76
+## 16 Perfil_4          others          130000               130
+## 17 Perfil_5 graduate school          141250               141
+## 18 Perfil_5      university           56804                57
+## 19 Perfil_5     high school           53415                53
+```
+
+]
+.panel[.panel-name[Flextable]
+
+
+
+&lt;template id="7c721131-c1a1-461c-98ad-af40a7acf39e"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-da341256{}.cl-da2e7850{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-da2e785a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-da309716{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-da30ae90{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-da30ae9a{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-da341256'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;variables&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;Perfil_3&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;Perfil_4&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-da30ae90"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e7850"&gt;Perfil_5&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;7.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;9.7%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;16.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;2.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;university&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;5.5%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;7.5%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;28.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;4.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;high school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;1.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;2.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;9.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;1.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;others&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;1.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;TOTALES&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;14.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;20.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;55.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;8.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-da30ae9a"&gt;&lt;p class="cl-da309716"&gt;&lt;span class="cl-da2e785a"&gt;0.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="be78525d-bf1c-4457-92d8-1da085082a8b"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("be78525d-bf1c-4457-92d8-1da085082a8b");
+var template = document.getElementById("7c721131-c1a1-461c-98ad-af40a7acf39e");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+]
+
+
+.panel[.panel-name[Anova]
+
+
+
+
+```r
+# aov(LIMIT_BAL ~ EDUCATION) -&gt; P value &lt;2e-16 ***
+aov(LIMIT_BAL ~ EDUCATION) %&gt;% TukeyHSD()
+```
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = LIMIT_BAL ~ EDUCATION)
+## 
+## $EDUCATION
+##                                  diff       lwr       upr p adj
+## university-graduate school  -65922.36 -70060.87 -61783.84 0e+00
+## high school-graduate school -86339.08 -91903.13 -80775.03 0e+00
+## others-graduate school      -31646.62 -46827.86 -16465.38 5e-07
+## high school-university      -20416.72 -25761.07 -15072.38 0e+00
+## others-university            34275.74  19173.63  49377.84 0e+00
+## others-high school           54692.46  39139.17  70245.75 0e+00
+```
+
+```r
+aov(LIMIT_BAL ~ EDUCATION) %&gt;% residuals() %&gt;% lillie.test()
+```
+
+```
+## 
+## 	Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  .
+## D = 0.10585, p-value &lt; 2.2e-16
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+
+```r
+kruskal.test(LIMIT_BAL ~ EDUCATION, data = bd_anovas)
+```
+
+```
+## 
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  LIMIT_BAL by EDUCATION
+## Kruskal-Wallis chi-squared = 2377.8, df = 3, p-value &lt; 2.2e-16
+```
+
+```r
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$EDUCATION, 
+                 p.adj = "bonferroni")
+```
+
+```
+## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  bd_anovas$LIMIT_BAL and bd_anovas$EDUCATION 
+## 
+##             graduate school university high school
+## university  &lt; 2e-16         -          -          
+## high school &lt; 2e-16         &lt; 2e-16    -          
+## others      5.2e-07         3.3e-08    &lt; 2e-16    
+## 
+## P value adjustment method: bonferroni
+```
+
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+.panel[.panel-name[Heatmap]
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+```
+##      Perfil Estado_civil mean_cred_limit mean_cred_limit_h
+## 1  Perfil_1      married          232691               233
+## 2  Perfil_1       single          203701               204
+## 3  Perfil_1     divorced          189286               189
+## 4  Perfil_2      married          225872               226
+## 5  Perfil_2       single          194929               195
+## 6  Perfil_2     divorced          131964               132
+## 7  Perfil_3      married          161770               162
+## 8  Perfil_3       single          143415               143
+## 9  Perfil_3     divorced           82196                82
+## 10 Perfil_4      married          107658               108
+## 11 Perfil_4       single           86911                87
+## 12 Perfil_4     divorced           59130                59
+## 13 Perfil_5      married           93553                94
+## 14 Perfil_5       single           62000                62
+## 15 Perfil_5     divorced           20000                20
+```
+
+]
+.panel[.panel-name[Flextable]
+
+
+
+&lt;template id="2c0d0fdc-f72e-4aa3-8a9f-11796f8f8951"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-dae4d00a{}.cl-dae06042{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-dae0604c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-dae23e58{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dae249e8{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dae249f2{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-dae4d00a'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;variables&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;Perfil_3&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;Perfil_4&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dae249e8"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae06042"&gt;Perfil_5&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;Casado&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;7.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;10.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;23.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;4.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;Soltero&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;7.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;10.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;31.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;4.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;Divorciado&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.7%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;TOTALES&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;14.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;20.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;55.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;8.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dae249f2"&gt;&lt;p class="cl-dae23e58"&gt;&lt;span class="cl-dae0604c"&gt;0.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="3628f92a-09f3-4043-8c6c-45506af132fc"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("3628f92a-09f3-4043-8c6c-45506af132fc");
+var template = document.getElementById("2c0d0fdc-f72e-4aa3-8a9f-11796f8f8951");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+]
+
+.panel[.panel-name[Anova]
+
+
+
+
+
+```r
+# aov(LIMIT_BAL ~ MARRIAGE) -&gt; P value &lt;2e-16 ***
+aov(LIMIT_BAL ~ MARRIAGE) %&gt;% TukeyHSD()
+```
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = LIMIT_BAL ~ MARRIAGE)
+## 
+## $MARRIAGE
+##                       diff        lwr       upr p adj
+## single-married   -25787.23  -29310.53 -22263.94     0
+## divorced-married -84120.40 -101137.63 -67103.17     0
+## divorced-single  -58333.17  -75321.99 -41344.34     0
+```
+
+```r
+aov(LIMIT_BAL ~ MARRIAGE) %&gt;% residuals() %&gt;% lillie.test()
+```
+
+```
+## 
+## 	Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  .
+## D = 0.10439, p-value &lt; 2.2e-16
+```
+
+]
+
+.panel[.panel-name[Prueba H]
+
+
+```r
+kruskal.test(LIMIT_BAL ~ MARRIAGE, data = bd_anovas)
+```
+
+```
+## 
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  LIMIT_BAL by MARRIAGE
+## Kruskal-Wallis chi-squared = 443.88, df = 2, p-value &lt; 2.2e-16
+```
+
+```r
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$MARRIAGE, 
+                 p.adj = "bonferroni")
+```
+
+```
+## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  bd_anovas$LIMIT_BAL and bd_anovas$MARRIAGE 
+## 
+##          married single 
+## single   &lt; 2e-16 -      
+## divorced &lt; 2e-16 2.6e-15
+## 
+## P value adjustment method: bonferroni
+```
+
+
+]]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+.panel[.panel-name[Heatmap]
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+```
+##      Perfil  Quantil_edad mean_cred_limit mean_cred_limit_h
+## 1  Perfil_1 21 - 28 anios          146445               146
+## 2  Perfil_1 29 - 34 anios          225869               226
+## 3  Perfil_1 35 - 41 anios          242870               243
+## 4  Perfil_1 42 - 79 anios          236063               236
+## 5  Perfil_2 21 - 28 anios          142124               142
+## 6  Perfil_2 29 - 34 anios          222194               222
+## 7  Perfil_2 35 - 41 anios          232927               233
+## 8  Perfil_2 42 - 79 anios          226640               227
+## 9  Perfil_3 21 - 28 anios          107748               108
+## 10 Perfil_3 29 - 34 anios          183099               183
+## 11 Perfil_3 35 - 41 anios          177590               178
+## 12 Perfil_3 42 - 79 anios          147071               147
+## 13 Perfil_4 21 - 28 anios           70039                70
+## 14 Perfil_4 29 - 34 anios          111007               111
+## 15 Perfil_4 35 - 41 anios          115985               116
+## 16 Perfil_4 42 - 79 anios           98703                99
+## 17 Perfil_5 21 - 28 anios           49355                49
+## 18 Perfil_5 29 - 34 anios           80000                80
+## 19 Perfil_5 35 - 41 anios           97714                98
+## 20 Perfil_5 42 - 79 anios           88298                88
+```
+
+]
+.panel[.panel-name[Flextable]
+
+
+
+&lt;template id="4baf73bd-ae40-4d57-8e28-121d91306e18"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-db8bea84{}.cl-db872922{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-db87292c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-db89400e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-db894c0c{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-db894c16{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-db8bea84'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;variables&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;Perfil_3&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;Perfil_4&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-db894c0c"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db872922"&gt;Perfil_5&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;21 - 28 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;3.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;5.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;13.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;2.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;0.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;29 - 34 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;3.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;5.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;11.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;1.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;35 - 41 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;4.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;5.5%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;13.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;2.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;0.1%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;2.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;4.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;17.0%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;2.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;0.2%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;TOTALES&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;14.9%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;20.3%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;55.8%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;8.4%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-db894c16"&gt;&lt;p class="cl-db89400e"&gt;&lt;span class="cl-db87292c"&gt;0.6%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="e3425ac1-90d2-4171-bf24-107c5ed28d5a"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("e3425ac1-90d2-4171-bf24-107c5ed28d5a");
+var template = document.getElementById("4baf73bd-ae40-4d57-8e28-121d91306e18");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+]
+
+.panel[.panel-name[Anova]
+
+
+
+```r
+# aov(LIMIT_BAL ~ QUANTILE_AGE) -&gt; P value &lt;2e-16 ***
+aov(LIMIT_BAL ~ QUANTILE_AGE) %&gt;% TukeyHSD()
+```
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = LIMIT_BAL ~ QUANTILE_AGE)
+## 
+## $QUANTILE_AGE
+##                                   diff        lwr        upr     p adj
+## 29 - 34 anios-21 - 28 anios  79256.747  74113.060  84400.435 0.0000000
+## 35 - 41 anios-21 - 28 anios  83153.863  77852.226  88455.500 0.0000000
+## 42 - 79 anios-21 - 28 anios  60837.039  55651.301  66022.777 0.0000000
+## 35 - 41 anios-29 - 34 anios   3897.116  -1457.107   9251.338 0.2410689
+## 42 - 79 anios-29 - 34 anios -18419.708 -23659.195 -13180.221 0.0000000
+## 42 - 79 anios-35 - 41 anios -22316.824 -27711.457 -16922.191 0.0000000
+```
+
+```r
+aov(LIMIT_BAL ~ QUANTILE_AGE) %&gt;% residuals() %&gt;% lillie.test()
+```
+
+```
+## 
+## 	Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  .
+## D = 0.097713, p-value &lt; 2.2e-16
+```
+
+]
+
+
+.panel[.panel-name[Prueba H]
+
+
+```r
+kruskal.test(LIMIT_BAL ~ QUANTILE_AGE, data = bd_anovas)
+```
+
+```
+## 
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  LIMIT_BAL by QUANTILE_AGE
+## Kruskal-Wallis chi-squared = 2362.3, df = 3, p-value &lt; 2.2e-16
+```
+
+```r
+pairwise.t.test( bd_anovas$LIMIT_BAL, 
+                 bd_anovas$QUANTILE_AGE, 
+                 p.adj = "bonferroni")
+```
+
+```
+## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  bd_anovas$LIMIT_BAL and bd_anovas$QUANTILE_AGE 
+## 
+##               21 - 28 anios 29 - 34 anios 35 - 41 anios
+## 29 - 34 anios &lt;2e-16        -             -            
+## 35 - 41 anios &lt;2e-16        0.37          -            
+## 42 - 79 anios &lt;2e-16        &lt;2e-16        &lt;2e-16       
+## 
+## P value adjustment method: bonferroni
+```
+
+
+]
+
+
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+.panelset[
+.panel[.panel-name[Boxplot Perfiles]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.panel[
+.panel-name[Anova Perfiles]
+
+
+```
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = LIMIT_BAL ~ CLIENT_PROFILE)
+## 
+## $CLIENT_PROFILE
+##                          diff        lwr         upr     p adj
+## Perfil_2-Perfil_1   -8513.868  -15208.12   -1819.619 0.0047450
+## Perfil_3-Perfil_1  -67573.462  -73296.66  -61850.261 0.0000000
+## Perfil_4-Perfil_1 -121546.393 -130004.86 -113087.930 0.0000000
+## Perfil_5-Perfil_1 -143079.515 -169018.23 -117140.795 0.0000000
+## Perfil_3-Perfil_2  -59059.594  -64142.43  -53976.760 0.0000000
+## Perfil_4-Perfil_2 -113032.525 -121071.54 -104993.510 0.0000000
+## Perfil_5-Perfil_2 -134565.647 -160370.63 -108760.660 0.0000000
+## Perfil_4-Perfil_3  -53972.931  -61223.30  -46722.564 0.0000000
+## Perfil_5-Perfil_3  -75506.053 -101076.34  -49935.769 0.0000000
+## Perfil_5-Perfil_4  -21533.122  -47850.99    4784.742 0.1679147
+```
+.panel[
+.panel-name[Anova Perfiles2]
+
+&lt;img src="Presentacion2_ARC_files/figure-html/unnamed-chunk-49-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+]]
+
+
+]
+
+]
+
+---
+layout: false
+background-image: url("fondo_de_pantalla2.png")
+background-size: cover
+
+
+
+
+
+
+
+
+.panelset[
+.panel[.panel-name[Flextable]
+
+&lt;template id="f447603e-a56b-42cc-afee-941499745086"&gt;&lt;style&gt;
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  border-color: transparent;
+  caption-side: top;
+}
+.tabwid-caption-bottom table{
+  caption-side: bottom;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td, .tabwid th {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-dc3b9196{}.cl-dc364eb6{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-dc364ec0{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(223, 223, 223, 1.00);background-color:transparent;}.cl-dc38d8de{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dc38d8e8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dc38e496{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc38e4a0{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 3pt solid rgba(255, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc38e4aa{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc38e4ab{width:0.75in;background-color:rgba(36, 36, 36, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-dc3b9196'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;th class="cl-dc38e496"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;SEX&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e496"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;MARRIAGE&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e496"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;QUANTILE_AGE&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e496"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;EDUCATION&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e496"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;PROFILE&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e4a0"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;MEAN_LIMIT&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e4a0"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;MIN&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e4a0"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;MAX&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e4a0"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;SD&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;th class="cl-dc38e4a0"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;PROP&lt;/span&gt;&lt;/p&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;305&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;560&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;133&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;0.90&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;303&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;650&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;124&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;0.55&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;35 - 41 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;284&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;580&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;117&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;0.64&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;single&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;280&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;30&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;620&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;131&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;0.20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;35 - 41 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;279&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;10&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;590&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;113&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;0.46&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;single&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;277&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;30&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;500&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;131&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;0.21&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Perfil_1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;274&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;30&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;640&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;116&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;0.64&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;single&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;35 - 41 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;274&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;620&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;128&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;0.57&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Hombre&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;29 - 34 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364ec0"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;269&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;500&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;121&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364ec0"&gt;0.21&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Mujer&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;married&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;42 - 79 anios&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;graduate school&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4aa"&gt;&lt;p class="cl-dc38d8de"&gt;&lt;span class="cl-dc364eb6"&gt;Perfil_2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;269&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;510&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;115&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-dc38e4ab"&gt;&lt;p class="cl-dc38d8e8"&gt;&lt;span class="cl-dc364eb6"&gt;0.70&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="cfcc826f-9457-4fba-8cc5-a960156979cb"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("cfcc826f-9457-4fba-8cc5-a960156979cb");
+var template = document.getElementById("f447603e-a56b-42cc-afee-941499745086");
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+.panel[.panel-name[R Code]
+
+
+```r
+net_differences_bymonths_grouped = select(net_differences_bymonths, SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE,  LIMIT_BAL)
+
+#Generando nuevas columnas
+net_differences_bymonths_grouped = net_differences_bymonths_grouped %&gt;% group_by(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, CLIENT_PROFILE) %&gt;% summarise("MEAN_LIMIT" = round(mean(LIMIT_BAL)/1000), "MIN" = min(LIMIT_BAL/1000), "MAX" = round(max(LIMIT_BAL)/1000), "SD" = round(sd(LIMIT_BAL)/1000),"N" = length(LIMIT_BAL), "PROP" = round((length(LIMIT_BAL)/nrow(net_differences_bymonths))*100, 2),  .groups = 'drop')
+
+#Filtrando por al menos 50 ocurrencias
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[net_differences_bymonths_grouped$N &gt; 50, ]
+
+#Ordenando de mayor a menor
+net_differences_bymonths_grouped = net_differences_bymonths_grouped[order(net_differences_bymonths_grouped$MEAN_LIMIT, decreasing = TRUE),  ]
+
+net_differences_bymonths_grouped = rename(net_differences_bymonths_grouped, PROFILE = CLIENT_PROFILE)
+```
+
+
+```r
+#Cantidades expresadas en miles de dólares. Se eliminan agrupaciones menores a 50 individuos
+table_prop = head(net_differences_bymonths_grouped, 9) %&gt;% as.data.frame() %&gt;% select(SEX, MARRIAGE, QUANTILE_AGE, EDUCATION, PROFILE, "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP") %&gt;% flextable(col_keys =  c("SEX", "MARRIAGE","QUANTILE_AGE", "EDUCATION","PROFILE", "MEAN_LIMIT", "MIN", "MAX", "SD", "PROP")) %&gt;% theme_vader() %&gt;% bold(~ SEX == "Mujer", bold = TRUE)
+```
+]
+]]
+
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+&lt;Br&gt;
+### Conclusiones
+
+Luego del analisis descriptivo y del analisis de varianzas entre agrupaciones de variables, se concluye que:
+
+&gt; Se rechaza la hipótesis (nula) todos los careos, excepto en (29-34 años vs 35-49 años y perfil 4 vs perfil 5),  en donde esta hipótesis asume que las medias de dos o más agrupaciones de la muestra son iguales.
+
+&gt; El comportamiento crediticio mes con mes parece ser la variable que tiene más impacto en el limite crediticio, aunque en su mayoría todas parecen tener influencia sobre esta variable de respuesta. Faltaría quizás generar un modelo de interacciones para evaluar que variables con cuales otras generan la mayor variabilidad en la variable de respuesta.
+
+---
+layout: false
+background-image: url("fondo_de_pantalla.jpg")
+background-size: cover
+&lt;Br&gt;
+### Referencias
+
+&gt; Ruza, C. &amp; Curbera, P. (2013). El riesgo de crédito en perspectiva. Madrid. Ediciones Universidad
+Nacional de estudios a distancias.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"self_contained": true,
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
